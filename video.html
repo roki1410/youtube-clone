@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video - YouTube Clone</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-theme">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fab fa-youtube"></i>
+                    <span>YouTube Clone</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="header-center">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar...">
+                <button id="searchButton"><i class="fas fa-search"></i></button>
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="settings-toggle" id="settingsToggle">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Inicio</span>
+            </a>
+            <a href="shorts.html" class="nav-item">
+                <i class="fas fa-bolt"></i>
+                <span>Shorts</span>
+            </a>
+            <a href="#" class="nav-item" id="favoritesLink">
+                <i class="fas fa-heart"></i>
+                <span>Favoritos</span>
+            </a>
+            <a href="#" class="nav-item" id="historyLink">
+                <i class="fas fa-history"></i>
+                <span>Historial</span>
+            </a>
+            <div class="nav-divider"></div>
+            <h3 class="nav-section-title">Explorar</h3>
+            <a href="#" class="nav-item" data-category="Música">
+                <i class="fas fa-music"></i>
+                <span>Música</span>
+            </a>
+            <a href="#" class="nav-item" data-category="Deportes">
+                <i class="fas fa-basketball-ball"></i>
+                <span>Deportes</span>
+            </a>
+            <a href="#" class="nav-item" data-category="Videojuegos">
+                <i class="fas fa-gamepad"></i>
+                <span>Videojuegos</span>
+            </a>
+            <a href="#" class="nav-item" data-category="Tecnología">
+                <i class="fas fa-laptop"></i>
+                <span>Tecnología</span>
+            </a>
+            <a href="#" class="nav-item" data-category="Cocina">
+                <i class="fas fa-utensils"></i>
+                <span>Cocina</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content video-page">
+        <div class="video-container">
+            <div class="video-player-container">
+                <div class="video-wrapper">
+                    <video id="videoPlayer" controls>
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                    <div class="video-overlay" id="videoOverlay">
+                        <button class="play-pause-btn" id="playPauseBtn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="video-controls" id="videoControls">
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar">
+                            <div class="progress" id="progress"></div>
+                            <div class="progress-thumb" id="progressThumb"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="controls-bottom">
+                        <div class="controls-left">
+                            <button class="control-btn" id="playPauseControl">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button class="control-btn" id="muteBtn">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="volume-container">
+                                <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                            </div>
+                            <div class="time-display">
+                                <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="controls-right">
+                            <button class="control-btn" id="speedBtn">
+                                1x
+                            </button>
+                            <button class="control-btn" id="pipBtn">
+                                <i class="fas fa-compress"></i>
+                            </button>
+                            <button class="control-btn" id="cinemaBtn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                            <button class="control-btn" id="fullscreenBtn">
+                                <i class="fas fa-expand-arrows-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="video-info">
+                <h1 class="video-title" id="videoTitle">Título del video</h1>
+                <div class="video-meta">
+                    <span class="video-views" id="videoViews">0 vistas</span>
+                    <span class="video-date" id="videoDate">Hace 1 día</span>
+                </div>
+                
+                <div class="video-actions">
+                    <button class="action-btn" id="likeBtn">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span id="likeCount">0</span>
+                    </button>
+                    <button class="action-btn" id="dislikeBtn">
+                        <i class="fas fa-thumbs-down"></i>
+                        <span id="dislikeCount">0</span>
+                    </button>
+                    <button class="action-btn" id="favoriteBtn">
+                        <i class="far fa-heart"></i>
+                        <span>Favorito</span>
+                    </button>
+                    <button class="action-btn" id="shareBtn">
+                        <i class="fas fa-share"></i>
+                        <span>Compartir</span>
+                    </button>
+                    <button class="action-btn" id="downloadBtn">
+                        <i class="fas fa-download"></i>
+                        <span>Descargar</span>
+                    </button>
+                </div>
+                
+                <div class="video-description">
+                    <div class="channel-info">
+                        <img src="assets/thumbnails/avatar1.jpg" alt="Avatar" class="channel-avatar">
+                        <div class="channel-details">
+                            <h3 class="channel-name" id="channelName">Nombre del canal</h3>
+                            <span class="channel-subs" id="channelSubs">1M suscriptores</span>
+                        </div>
+                        <button class="subscribe-btn">Suscribirse</button>
+                    </div>
+                    
+                    <div class="description-text" id="descriptionText">
+                        Descripción del video...
+                    </div>
+                    <button class="show-more-btn" id="showMoreBtn">Mostrar más</button>
+                    
+                    <div class="video-tags" id="videoTags"></div>
+                </div>
+            </div>
+            
+            <!-- Minijuego si el video tiene gameTag -->
+            <div class="mini-game-container" id="miniGameContainer" style="display: none;">
+                <h3>Minijuego relacionado</h3>
+                <div class="mini-game" id="miniGame">
+                    <p>¡Juego simple! Haz clic en el botón para ganar puntos:</p>
+                    <button id="gameButton">¡Haz clic!</button>
+                    <p>Puntos: <span id="gameScore">0</span></p>
+                </div>
+            </div>
+            
+            <!-- Comentarios -->
+            <div class="comments-section">
+                <h3 class="comments-title">
+                    <span id="commentsCount">0</span> comentarios
+                </h3>
+                
+                <div class="add-comment">
+                    <img src="assets/thumbnails/avatar-default.jpg" alt="Avatar" class="user-avatar">
+                    <div class="comment-input-container">
+                        <input type="text" id="commentInput" placeholder="Añade un comentario...">
+                        <div class="comment-buttons">
+                            <button class="btn-cancel">Cancelar</button>
+                            <button class="btn-comment" id="submitComment">Comentar</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="comments-list" id="commentsList">
+                    <!-- Los comentarios se cargan aquí dinámicamente -->
+                </div>
+            </div>
+        </div>
+        
+        <aside class="video-sidebar">
+            <h3 class="sidebar-title">Videos relacionados</h3>
+            <div class="related-videos" id="relatedVideos"></div>
+            
+            <h3 class="sidebar-title">Shorts relacionados</h3>
+            <div class="related-shorts" id="relatedShorts"></div>
+        </aside>
+    </main>
+
+    <!-- Mini reproductor flotante -->
+    <div class="mini-player" id="miniPlayer" style="display: none;">
+        <div class="mini-player-content">
+            <video id="miniVideoPlayer" controls></video>
+            <div class="mini-player-info">
+                <h4 class="mini-player-title">Título del video</h4>
+                <button class="mini-player-close" id="miniPlayerClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="shorts.html" class="mobile-nav-item">
+            <i class="fas fa-bolt"></i>
+            <span>Shorts</span>
+        </a>
+        <a href="#" class="mobile-nav-item" id="mobileFavorites">
+            <i class="fas fa-heart"></i>
+            <span>Favoritos</span>
+        </a>
+        <a href="#" class="mobile-nav-item" id="mobileHistory">
+            <i class="fas fa-history"></i>
+            <span>Historial</span>
+        </a>
+    </nav>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Configuración</h2>
+                <button class="close-modal" id="closeSettings">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <h3>Tema</h3>
+                    <div class="theme-options">
+                        <button class="theme-option active" data-theme="light">Claro</button>
+                        <button class="theme-option" data-theme="dark">Oscuro</button>
+                        <button class="theme-option" data-theme="oled">OLED</button>
+                        <button class="theme-option" data-theme="sepia">Sepia</button>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h3>Reproducción</h3>
+                    <div class="setting-item">
+                        <label for="defaultSpeed">Velocidad predeterminada:</label>
+                        <select id="defaultSpeed">
+                            <option value="0.5">0.5x</option>
+                            <option value="0.75">0.75x</option>
+                            <option value="1" selected>Normal</option>
+                            <option value="1.25">1.25x</option>
+                            <option value="1.5">1.5x</option>
+                            <option value="2">2x</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="hoverPreview"> Vista previa al pasar el mouse
+                        </label>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h3>Datos temporales</h3>
+                    <div class="setting-item">
+                        <button class="btn-danger" id="clearFavorites">Borrar favoritos</button>
+                    </div>
+                    <div class="setting-item">
+                        <button class="btn-danger" id="clearHistory">Borrar historial</button>
+                    </div>
+                    <div class="setting-item">
+                        <button class="btn-danger" id="clearAll">Limpiar todo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/video-player.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
